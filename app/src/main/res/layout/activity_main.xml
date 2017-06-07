@@ -1,41 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/srl"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.zxd.blackt.blackt.MainActivity">
+    android:layout_height="match_parent">
 
-    <!--<include layout="@layout/layout_toobar" />-->
-
-    <FrameLayout
+    <RelativeLayout
+        android:id="@+id/rll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary" />
 
-        <!--
-    backgroundTint 可以修改悬浮按钮的背景颜色
-    elevation 可以修改悬浮按钮的阴影大小
-    pressedTranslationZ 可以设置点击悬浮按钮时候阴影的大小
-    rippleColor 点击后的颜色变化
-     -->
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@mipmap/fabtn"
-            app:backgroundTint="?attr/colorPrimary"
-            app:elevation="8dp"
-            app:pressedTranslationZ="12dp"
-            app:rippleColor="#6959CD" />
+    <include layout="@layout/layout_fabs" />
 
-    </FrameLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu"
+        fab:menu_animationDelayPerItem="50"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_colorNormal="?attr/colorPrimary"
+        fab:menu_colorPressed="#5CACEE"
+        fab:menu_colorRipple="#99FFFFFF"
+        fab:menu_fab_hide_animation="@anim/hide_to_bottom"
+        fab:menu_fab_show_animation="@anim/show_from_bottom"
+        fab:menu_fab_size="normal"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_labels_colorNormal="#333333"
+        fab:menu_labels_colorPressed="#444444"
+        fab:menu_labels_colorRipple="#66FFFFFF"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_margin="0dp"
+        fab:menu_labels_maxLines="-1"
+        fab:menu_labels_padding="8dp"
+        fab:menu_labels_paddingBottom="4dp"
+        fab:menu_labels_paddingLeft="8dp"
+        fab:menu_labels_paddingRight="8dp"
+        fab:menu_labels_paddingTop="4dp"
+        fab:menu_labels_position="left"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_style="@style/MenuLabelsStyle"
+        fab:menu_labels_textColor="#FFFFFF"
+        fab:menu_labels_textSize="14sp"
+        fab:menu_openDirection="up"
+        fab:menu_shadowColor="#66000000"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="3dp"
+        fab:menu_showShadow="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabtn_pen"
+            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorPressed="#5CACEE"
+            fab:fab_label="执笔写心情"
+            fab:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_pen" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabtn_notes"
+            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorPressed="#5CACEE"
+            fab:fab_label="心情日记本"
+            fab:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_note" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabtn_music"
+            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorPressed="#5CACEE"
+            fab:fab_label="偶尔听听歌"
+            fab:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/emo_yinyue" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabtn_news"
+            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorPressed="#5CACEE"
+            fab:fab_label="也要知时事"
+            fab:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_news" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabtn_setting"
+            fab:fab_colorNormal="?attr/colorPrimary"
+            fab:fab_colorPressed="#5CACEE"
+            fab:fab_label="一室设置屋"
+            fab:fab_size="mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fab_settings" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>
