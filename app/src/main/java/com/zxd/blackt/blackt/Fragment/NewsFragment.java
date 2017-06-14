@@ -1,5 +1,7 @@
 package com.zxd.blackt.blackt.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,15 +12,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
-import com.zxd.blackt.blackt.Activity.MainActivity;
 import com.zxd.blackt.blackt.Adapter.TopAdapter;
 import com.zxd.blackt.blackt.Application.App;
 import com.zxd.blackt.blackt.Entity.Top;
@@ -60,14 +60,61 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 0) {
-                getTopsData(TYPE_TOP);
                 topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_TOP);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 1) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_TIYU);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 2) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_CAIJING);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 3) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_SHISHANG);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 4) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_GUONEI);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 5) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_GUOJI);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 6) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_JUNSHI);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 7) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_YULE);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 8) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_KEJI);
+                srl.setRefreshing(false);
+            }
+            if (msg.what == 9) {
+                topAdapter.notifyDataSetChanged();
+                getTopsData(TYPE_SHEHUI);
                 srl.setRefreshing(false);
             }
         }
     };
 
     private TopAdapter topAdapter;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
 
     @Nullable
     @Override
@@ -87,7 +134,13 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+        initData();
         return view;
+    }
+
+    private void initData() {
+        sp = getActivity().getSharedPreferences("page", Context.MODE_PRIVATE);
+        editor = sp.edit();
     }
 
     @Override
@@ -98,7 +151,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
 
     private void getTopsData(String type) {
         Entrances entrances = Entrances.getEntrances();
-        entrances.getTopData(new Subscriber<Top>() {
+        entrances.setTopData(new Subscriber<Top>() {
             @Override
             public void onCompleted() {
             }
@@ -155,7 +208,40 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     SwipeRefreshLayout.OnRefreshListener srlistener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            handler.sendEmptyMessageDelayed(0, 2000);
+            String pageName = sp.getString("pagename", null);
+            if (pageName == null) {
+                handler.sendEmptyMessageDelayed(0, 2000);
+            }
+            if (pageName == "top") {
+                handler.sendEmptyMessageDelayed(0, 2000);
+            }
+            if (pageName == "tiyu") {
+                handler.sendEmptyMessageDelayed(1, 2000);
+            }
+            if (pageName == "caijing") {
+                handler.sendEmptyMessageDelayed(2, 2000);
+            }
+            if (pageName == "shishang") {
+                handler.sendEmptyMessageDelayed(3, 2000);
+            }
+            if (pageName == "guonei") {
+                handler.sendEmptyMessageDelayed(4, 2000);
+            }
+            if (pageName == "guoji") {
+                handler.sendEmptyMessageDelayed(5, 2000);
+            }
+            if (pageName == "junshi") {
+                handler.sendEmptyMessageDelayed(6, 2000);
+            }
+            if (pageName == "yule") {
+                handler.sendEmptyMessageDelayed(7, 2000);
+            }
+            if (pageName == "keji") {
+                handler.sendEmptyMessageDelayed(8, 2000);
+            }
+            if (pageName == "shehui") {
+                handler.sendEmptyMessageDelayed(9, 2000);
+            }
         }
     };
 
@@ -163,6 +249,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_news_top:
+                editor.putString("pagename", "top");
+                editor.commit();
                 getTopsData(TYPE_TOP);
                 tv_top.setTextColor(Color.BLACK);
                 tv_top.setBackgroundResource(R.mipmap.btn_bag);
@@ -186,6 +274,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_shehui:
+                editor.putString("pagename", "shehui");
+                editor.commit();
                 getTopsData(TYPE_SHEHUI);
                 tv_shehui.setTextColor(Color.BLACK);
                 tv_shehui.setBackgroundResource(R.mipmap.btn_bag);
@@ -209,6 +299,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_guonei:
+                editor.putString("pagename", "guonei");
+                editor.commit();
                 getTopsData(TYPE_GUONEI);
                 tv_guonei.setTextColor(Color.BLACK);
                 tv_guonei.setBackgroundResource(R.mipmap.btn_bag);
@@ -232,6 +324,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_guoji:
+                editor.putString("pagename", "guoji");
+                editor.commit();
                 getTopsData(TYPE_GUOJI);
                 tv_guoji.setTextColor(Color.BLACK);
                 tv_guoji.setBackgroundResource(R.mipmap.btn_bag);
@@ -255,6 +349,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_yule:
+                editor.putString("pagename", "yule");
+                editor.commit();
                 getTopsData(TYPE_YULE);
                 tv_yule.setTextColor(Color.BLACK);
                 tv_yule.setBackgroundResource(R.mipmap.btn_bag);
@@ -278,6 +374,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_tiyu:
+                editor.putString("pagename", "tiyu");
+                editor.commit();
                 getTopsData(TYPE_TIYU);
                 tv_tiyu.setTextColor(Color.BLACK);
                 tv_tiyu.setBackgroundResource(R.mipmap.btn_bag);
@@ -301,6 +399,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_junshi:
+                editor.putString("pagename", "junshi");
+                editor.commit();
                 getTopsData(TYPE_JUNSHI);
                 tv_junshi.setTextColor(Color.BLACK);
                 tv_junshi.setBackgroundResource(R.mipmap.btn_bag);
@@ -324,6 +424,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_keji.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_keji:
+                editor.putString("pagename", "keji");
+                editor.commit();
                 getTopsData(TYPE_KEJI);
                 tv_keji.setTextColor(Color.BLACK);
                 tv_keji.setBackgroundResource(R.mipmap.btn_bag);
@@ -347,6 +449,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_junshi.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_caijing:
+                editor.putString("pagename", "caijing");
+                editor.commit();
                 getTopsData(TYPE_CAIJING);
                 tv_caijing.setTextColor(Color.BLACK);
                 tv_caijing.setBackgroundResource(R.mipmap.btn_bag);
@@ -370,6 +474,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener {
                 tv_junshi.setBackgroundColor(Color.parseColor("#3F51B5"));
                 break;
             case R.id.tv_news_shishang:
+                editor.putString("pagename", "shishang");
+                editor.commit();
                 getTopsData(TYPE_SHISHANG);
                 tv_shishang.setTextColor(Color.BLACK);
                 tv_shishang.setBackgroundResource(R.mipmap.btn_bag);

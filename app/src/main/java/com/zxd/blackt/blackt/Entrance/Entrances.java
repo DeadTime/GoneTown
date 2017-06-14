@@ -51,9 +51,9 @@ public class Entrances {
         return SingleEntrances.sEntrances;
     }
 
-    public void getTopData(Subscriber<Top> topSubscriber, String type, String key) {
+    public void setTopData(Subscriber<Top> topSubscriber, String type, String key) {
         TopService topService = retrofit.create(TopService.class);
-        topService.getTopData(type, key)
+        topService.setTopData(type, key)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

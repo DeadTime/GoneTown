@@ -35,6 +35,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     private Note note;
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private EditText edit_notes_name;
 
     @Nullable
     @Override
@@ -47,6 +48,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
     private void initView(View view) {
         et_note = (EditText) view.findViewById(R.id.edit_notes);
         et_note.setFocusable(true);
+        edit_notes_name = (EditText) view.findViewById(R.id.edit_notes_name);
         iv_back = (ImageView) view.findViewById(R.id.iv_back_notes);
         iv_save = (ImageView) view.findViewById(R.id.iv_savenote);
         iv_del = (ImageView) view.findViewById(R.id.iv_delnote);
@@ -70,7 +72,7 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_back_notes:
                 break;
             case R.id.iv_savenote:
-                note.setNname("笔记名字");
+                note.setNname(edit_notes_name.getText().toString().trim());
                 note.setNcontent(et_note.getText().toString().trim());
                 Date curDate = new Date(System.currentTimeMillis());
                 note.setNdate(curDate);
@@ -93,12 +95,10 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss(); //关闭dialog
-                NoteFragment noteFragment = new NoteFragment();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("flag", false);
-                noteFragment.setArguments(bundle);
+                //方法一
+                AllNoteFragment allNoteFragment = AllNoteFragment.newInstance(false);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.replace(R.id.rll, new AllNoteFragment(), "allnote");
+                ft.replace(R.id.rll, allNoteFragment, "allnote");
                 ft.commit();
                 Toast.makeText(App.getContext(), "设置成功，你的日记将会被更多人看到", Toast.LENGTH_SHORT).show();
             }
@@ -107,8 +107,13 @@ public class NoteFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                //方法二
+                AllNoteFragment allNoteFragment = new AllNoteFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("flag", true);
+                allNoteFragment.setArguments(bundle);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.replace(R.id.rll, new AllNoteFragment(), "allnote");
+                ft.replace(R.id.rll, allNoteFragment, "allnote");
                 ft.commit();
                 Toast.makeText(App.getContext(), "设置成功，该日记将仅自己可见", Toast.LENGTH_SHORT).show();
             }

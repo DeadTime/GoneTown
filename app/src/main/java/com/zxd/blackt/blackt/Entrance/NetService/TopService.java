@@ -12,5 +12,5 @@ import rx.Observable;
 
 public interface TopService {
     @GET("index")
-    Observable<Top> getTopData(@Query("type") String type, @Query("key") String key);
+    Observable<Top> setTopData(@Query("type") String type, @Query("key") String key);
 }

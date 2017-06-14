@@ -39,15 +39,47 @@
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/edit_notes"
+    <TextView
+        android:id="@+id/tv_line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="1dp"
         android:layout_below="@id/lltop"
+        android:background="#bfbfbf" />
+
+    <EditText
+        android:id="@+id/edit_notes_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_line"
+        android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:background="@null"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:hint="文章标题"
+        android:textColorHint="#707070" />
+
+    <TextView
+        android:id="@+id/tv_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/edit_notes_name"
+        android:background="#bfbfbf" />
+
+    <EditText
+        android:id="@+id/edit_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_line2"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:hint="正文"
+        android:textColorHint="#707070"
         android:textCursorDrawable="@null" />
 
 </RelativeLayout>
