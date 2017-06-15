@@ -16,8 +16,9 @@
         app:cardCornerRadius="7dp">
 
         <LinearLayout
+            android:id="@+id/ll_privatenote"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -25,7 +26,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:ellipsize="end"
                 android:gravity="center"
+                android:maxEms="5"
+                android:singleLine="true"
                 android:text="日记名字"
                 android:textColor="#67da9e"
                 android:textSize="16sp" />
