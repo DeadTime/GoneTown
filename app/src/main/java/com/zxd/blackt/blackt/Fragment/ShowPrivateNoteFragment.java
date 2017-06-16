@@ -5,26 +5,18 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.zxd.blackt.blackt.Adapter.PrivateNoteAdapter;
 import com.zxd.blackt.blackt.Application.App;
 import com.zxd.blackt.blackt.Entity.DaoMaster;
 import com.zxd.blackt.blackt.Entity.DaoSession;
 import com.zxd.blackt.blackt.Entity.Note;
 import com.zxd.blackt.blackt.Entity.NoteDao;
-import com.zxd.blackt.blackt.Listeners.JumpListener;
 import com.zxd.blackt.blackt.R;
-
 import org.greenrobot.greendao.query.QueryBuilder;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 

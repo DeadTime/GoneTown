@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/notebag"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <LinearLayout
@@ -25,6 +25,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="标题"
+            android:textColor="#fff"
             android:textSize="21sp" />
 
     </LinearLayout>
@@ -36,12 +37,14 @@
         android:layout_marginRight="10dp"
         android:gravity="right"
         android:text="日期"
+        android:textColor="#fff"
         android:textSize="13sp" />
 
     <TextView
         android:id="@+id/private_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="16sp"/>
+        android:textColor="#fff"
+        android:textSize="16sp" />
 
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
+import com.zxd.blackt.blackt.Fragment.MusicFragment;
 import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
 import com.zxd.blackt.blackt.R;
@@ -83,10 +84,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.fabtn_music:
                 fam.close(true);
                 Toast.makeText(this, "音乐", Toast.LENGTH_SHORT).show();
+                ft = fm.beginTransaction();
+                ft.replace(R.id.rll, new MusicFragment(), "music");
+                ft.commit();
                 break;
             case R.id.fabtn_news:
                 fam.close(true);
                 Toast.makeText(this, "新闻", Toast.LENGTH_SHORT).show();
+                ft = fm.beginTransaction();
+                ft.replace(R.id.rll, new NewsFragment(), "news");
+                ft.commit();
                 break;
             case R.id.fabtn_pen:
                 fam.close(true);
@@ -98,6 +105,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.fabtn_notes:
                 fam.close(true);
                 Toast.makeText(this, "本子", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = getSharedPreferences("isShow", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isShow", true);
+                editor.commit();
+                ft = fm.beginTransaction();
+                ft.replace(R.id.rll, new AllNoteFragment(), "allnote");
+                ft.commit();
                 break;
         }
     }
