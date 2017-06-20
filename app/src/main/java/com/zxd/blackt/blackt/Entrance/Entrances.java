@@ -2,9 +2,7 @@ package com.zxd.blackt.blackt.Entrance;
 
 import com.zxd.blackt.blackt.Entity.Top;
 import com.zxd.blackt.blackt.Entrance.NetService.TopService;
-
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -41,6 +39,7 @@ public class Entrances {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASEURL)
                 .build();
+
     }
 
     private static class SingleEntrances {
