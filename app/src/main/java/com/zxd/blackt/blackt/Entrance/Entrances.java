@@ -1,8 +1,14 @@
 package com.zxd.blackt.blackt.Entrance;
 
+import com.zxd.blackt.blackt.Entity.Music;
+import com.zxd.blackt.blackt.Entity.PlayMusic;
 import com.zxd.blackt.blackt.Entity.Top;
+import com.zxd.blackt.blackt.Entrance.NetService.MusicService;
+import com.zxd.blackt.blackt.Entrance.NetService.PlayMusicService;
 import com.zxd.blackt.blackt.Entrance.NetService.TopService;
+
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -24,8 +30,22 @@ public class Entrances {
      * http://mini.eastday.com/mobile/170510103049084.html
      */
     private static String BASEURL = "http://v.juhe.cn/toutiao/";
+//    private static String BASEMUSICURL = "https://api.douban.com/v2/music/";
+    private static String PLAYMUSICURL = "http://route.showapi.com/";
+    private String SHOWAPPID = "40859";
+    private String SHOWSIGN = "d123e9e506bd47a2b81279d0f75fef63";
     private static final int DEFAULT_TIMEOUT = 5;
     private final Retrofit retrofit;
+//    private final Retrofit retrofit_music;
+    private final Retrofit retrofit_play;
+
+    public String getSHOWAPPID() {
+        return SHOWAPPID;
+    }
+
+    public String getSHOWSIGN() {
+        return SHOWSIGN;
+    }
 
     //构造私有方法
     private Entrances() {
@@ -38,6 +58,20 @@ public class Entrances {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASEURL)
+                .build();
+
+//        retrofit_music = new Retrofit.Builder()
+//                .client(okhttpClient.build())
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .baseUrl(BASEMUSICURL)
+//                .build();
+
+        retrofit_play = new Retrofit.Builder()
+                .client(okhttpClient.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(PLAYMUSICURL)
                 .build();
 
     }
@@ -57,6 +91,24 @@ public class Entrances {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(topSubscriber);
+    }
+
+//    public void setMusicData(Subscriber<Music> musicsSubscriber, String q, int count) {
+//        MusicService musicService = retrofit_music.create(MusicService.class);
+//        musicService.setMusicData(q, count)
+//                .subscribeOn(Schedulers.io())
+//                .unsubscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(musicsSubscriber);
+//    }
+
+    public void playMusic(Subscriber<PlayMusic> playMusicSubscriber, String showappid, String showsign, String keyword) {
+        PlayMusicService playMusicService = retrofit_play.create(PlayMusicService.class);
+        playMusicService.setPlayMusic(showappid, showsign, keyword)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(playMusicSubscriber);
     }
 
 }
