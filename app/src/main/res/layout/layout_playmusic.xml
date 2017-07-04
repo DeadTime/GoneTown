@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/musicbag"
+    android:orientation="vertical">
+
+    <com.zxd.blackt.blackt.Customs.LRCView
+        android:id="@+id/lrcView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left">
+
+        <ImageView
+            android:id="@+id/iv_lrc"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/lrc" />
+
+        <ImageView
+            android:id="@+id/iv_upload"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/upload" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,56 +39,97 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_frount"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/frount" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="#fff" />
+
+            <SeekBar
+                android:id="@+id/seekbar"
+                style="@android:style/Widget.Holo.SeekBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04:00"
+                android:textColor="#fff" />
+
+        </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
+            android:layout_marginTop="10dp">
 
-            <ImageView
-                android:id="@+id/iv_stop"
+            <RelativeLayout
+                android:id="@+id/rl_playandstop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/stop" />
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_stop"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/stop" />
+
+                <ImageView
+                    android:id="@+id/iv_play"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@mipmap/play"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
 
             <ImageView
-                android:id="@+id/iv_play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/play"
-                android:visibility="gone" />
+                android:id="@+id/iv_frount"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/rl_playandstop"
+                android:src="@mipmap/frount" />
+
+            <ImageView
+                android:id="@+id/iv_next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/rl_playandstop"
+                android:src="@mipmap/next" />
+
+            <ImageView
+                android:id="@+id/iv_sound"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/iv_next"
+                android:src="@mipmap/sound" />
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/iv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/next" />
-
-        <ImageView
-            android:id="@+id/iv_sound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:src="@mipmap/sound" />
-
-        <ImageView
-            android:id="@+id/iv_lrc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/lrc" />
-
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
