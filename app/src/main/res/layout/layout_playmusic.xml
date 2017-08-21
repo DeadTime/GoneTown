@@ -18,15 +18,15 @@
 
         <ImageView
             android:id="@+id/iv_lrc"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="15dp"
             android:src="@mipmap/lrc" />
 
         <ImageView
             android:id="@+id/iv_upload"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginLeft="15dp"
             android:src="@mipmap/upload" />
 
@@ -89,14 +89,14 @@
 
                 <ImageView
                     android:id="@+id/iv_stop"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@mipmap/stop" />
 
                 <ImageView
                     android:id="@+id/iv_play"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@mipmap/play"
                     android:visibility="gone" />
 
@@ -104,16 +104,16 @@
 
             <ImageView
                 android:id="@+id/iv_frount"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/rl_playandstop"
                 android:src="@mipmap/frount" />
 
             <ImageView
                 android:id="@+id/iv_next"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/rl_playandstop"
@@ -121,8 +121,8 @@
 
             <ImageView
                 android:id="@+id/iv_sound"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/iv_next"

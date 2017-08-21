@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#123456">
+    android:background="#667777">
 
     <com.zxd.blackt.blackt.Customs.MyScrollview
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:background="#123444" />
+                android:background="#667777" />
 
         </RelativeLayout>
 

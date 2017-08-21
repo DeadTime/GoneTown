@@ -1,5 +1,6 @@
 package com.zxd.blackt.blackt.Fragment;
 
+import android.Manifest;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zhy.m.permission.MPermissions;
 import com.zxd.blackt.blackt.Customs.LRCView;
 import com.zxd.blackt.blackt.Entity.Lrc;
 import com.zxd.blackt.blackt.Entrance.Entrances;
 import com.zxd.blackt.blackt.R;
 import com.zxd.blackt.blackt.Utils.FromHtmlUtils;
 import com.zxd.blackt.blackt.Utils.PreferenceUtil;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import rx.Subscriber;
 
 public class PlayMusicFragment extends Fragment implements View.OnClickListener, LRCView.OnPlayerClickListener {
@@ -53,7 +58,6 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
                     int c = mediaPlayer.getCurrentPosition();
                     if (mediaPlayer.isPlaying()) {
                         lrcView.setCurrentTimeMillis(makeDuration(mediaPlayer.getCurrentPosition()));
-                        Log.d("------->>", "传过来的数值：" + makeDuration(mediaPlayer.getCurrentPosition()));
                         seekBar.setProgress(c);
                         tv_start.setText(makeDuration(c));
                     } else {
@@ -252,6 +256,7 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
             String lpath = "/mnt/sdcard/Download/" + sid + ".lrc";
             file = new File(lpath);
             if (!file.exists()) {
+                MPermissions.requestPermissions(PlayMusicFragment.this, 4, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
                 file.createNewFile();
             }
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
