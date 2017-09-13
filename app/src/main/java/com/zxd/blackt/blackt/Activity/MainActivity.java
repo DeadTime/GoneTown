@@ -5,9 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
@@ -55,6 +58,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fabtn_news.setOnClickListener(this);
         fabtn_notes.setOnClickListener(this);
         fabtn_pen.setOnClickListener(this);
+
+//        Glide.with(this)
+//                .load("")
+//                .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
+//                .placeholder(R.mipmap.ic_launcher)//需在load后调用
+//                .into(new ImageView(this));
+
     }
 
     private void home() {
@@ -115,4 +125,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("------------>>", "stop");
+    }
+
 }

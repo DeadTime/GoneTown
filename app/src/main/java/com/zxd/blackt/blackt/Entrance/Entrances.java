@@ -3,10 +3,14 @@ package com.zxd.blackt.blackt.Entrance;
 import com.zxd.blackt.blackt.Entity.Lrc;
 import com.zxd.blackt.blackt.Entity.PlayMusic;
 import com.zxd.blackt.blackt.Entity.Top;
+import com.zxd.blackt.blackt.Entity.Words;
 import com.zxd.blackt.blackt.Entrance.NetService.LrcService;
 import com.zxd.blackt.blackt.Entrance.NetService.PlayMusicService;
 import com.zxd.blackt.blackt.Entrance.NetService.TopService;
+import com.zxd.blackt.blackt.Entrance.NetService.WordService;
+
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -28,13 +32,13 @@ public class Entrances {
      * http://mini.eastday.com/mobile/170510103049084.html
      */
     private static String BASEURL = "http://v.juhe.cn/toutiao/";
-    private static String PLAYMUSICURL = "http://route.showapi.com/";
+    private static String URL = "http://route.showapi.com/";
     private String SHOWAPPID = "40859";
     private String SHOWSIGN = "d123e9e506bd47a2b81279d0f75fef63";
     private static final int DEFAULT_TIMEOUT = 5;
     private final Retrofit retrofit;
     private final Retrofit retrofit_play;
-    private final Retrofit retrofit_lrc;
+    private final Retrofit retrofit_word;
 
     public String getSHOWAPPID() {
         return SHOWAPPID;
@@ -61,14 +65,14 @@ public class Entrances {
                 .client(okhttpClient.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(PLAYMUSICURL)
+                .baseUrl(URL)
                 .build();
 
-        retrofit_lrc = new Retrofit.Builder()
+        retrofit_word = new Retrofit.Builder()
                 .client(okhttpClient.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(PLAYMUSICURL)
+                .baseUrl(URL)
                 .build();
 
     }
@@ -106,6 +110,15 @@ public class Entrances {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(lrcSubscriber);
+    }
+
+    public void showWords(Subscriber<Words> showWordsSubscriber, String showappid, String showsign, String count) {
+        WordService showWordsService = retrofit_word.create(WordService.class);
+        showWordsService.setWords(showappid, showsign, count)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(showWordsSubscriber);
     }
 
 }

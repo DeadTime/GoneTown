@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +44,6 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
     private ImageView iv_stop;
     private ImageView iv_play;
     private ImageView iv_next;
-    private ImageView iv_lrc;
-    private ImageView iv_sound;
     private MediaPlayer mediaPlayer;
     private TextView tv_start;
     private TextView tv_end;
@@ -68,6 +67,10 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
         }
     };
     private LRCView lrcView;
+    private ImageView iv_one;
+    private ImageView iv_all;
+    private ImageView iv_random;
+    private RelativeLayout rl_isCollection;
 
     @Nullable
     @Override
@@ -82,8 +85,6 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
         iv_stop = (ImageView) view.findViewById(R.id.iv_stop);
         iv_play = (ImageView) view.findViewById(R.id.iv_play);
         iv_next = (ImageView) view.findViewById(R.id.iv_next);
-        iv_lrc = (ImageView) view.findViewById(R.id.iv_lrc);
-        iv_sound = (ImageView) view.findViewById(R.id.iv_sound);
         tv_start = (TextView) view.findViewById(R.id.tv_start_time);
         tv_end = (TextView) view.findViewById(R.id.tv_end_time);
         seekBar = (SeekBar) view.findViewById(R.id.seekbar);
@@ -92,6 +93,17 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
         lrcView.setLineSpace(PreferenceUtil.getInstance(getActivity()).getFloat(PreferenceUtil.KEY_TEXT_SIZE, 12.0f));
         lrcView.setTextSize(PreferenceUtil.getInstance(getActivity()).getFloat(PreferenceUtil.KEY_TEXT_SIZE, 15.0f));
         lrcView.setHighLightTextColor(PreferenceUtil.getInstance(getActivity()).getInt(PreferenceUtil.KEY_HIGHLIGHT_COLOR, Color.parseColor("#4FC5C7")));
+        iv_one = (ImageView) view.findViewById(R.id.iv_one);
+        iv_all = (ImageView) view.findViewById(R.id.iv_all);
+        iv_random = (ImageView) view.findViewById(R.id.iv_random);
+        rl_isCollection = (RelativeLayout) view.findViewById(R.id.rl_isCollection);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String isCollection = bundle.getString("isCollection", null);
+            if (isCollection != null) {
+                rl_isCollection.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -108,10 +120,8 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
      */
     private void onClick() {
         iv_frount.setOnClickListener(this);
-        iv_lrc.setOnClickListener(this);
         iv_next.setOnClickListener(this);
         iv_play.setOnClickListener(this);
-        iv_sound.setOnClickListener(this);
         iv_stop.setOnClickListener(this);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -133,6 +143,9 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+        iv_all.setOnClickListener(this);
+        iv_one.setOnClickListener(this);
+        iv_random.setOnClickListener(this);
     }
 
     /**
@@ -213,7 +226,7 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
          */
         String downurl = getArguments().getString("downurl", null);
         if (downurl != null) {
-
+            Log.d("----downurl--->>", downurl);
         } else {
             Toast.makeText(getActivity(), "下载链接获取错误", Toast.LENGTH_SHORT).show();
         }
@@ -239,6 +252,25 @@ public class PlayMusicFragment extends Fragment implements View.OnClickListener,
                 mediaPlayer.start();
                 iv_play.setVisibility(View.GONE);
                 iv_stop.setVisibility(View.VISIBLE);
+                break;
+            case R.id.iv_frount:
+                break;
+            case R.id.iv_next:
+                break;
+            case R.id.iv_all:
+                iv_all.setVisibility(View.GONE);
+                iv_one.setVisibility(View.VISIBLE);
+                iv_random.setVisibility(View.GONE);
+                break;
+            case R.id.iv_one:
+                iv_all.setVisibility(View.GONE);
+                iv_one.setVisibility(View.GONE);
+                iv_random.setVisibility(View.VISIBLE);
+                break;
+            case R.id.iv_random:
+                iv_all.setVisibility(View.VISIBLE);
+                iv_one.setVisibility(View.GONE);
+                iv_random.setVisibility(View.GONE);
                 break;
         }
     }

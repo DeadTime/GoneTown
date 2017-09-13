@@ -16,19 +16,23 @@
         android:layout_height="wrap_content"
         android:gravity="left">
 
+        <!-- 感觉这个没意义啊 -->
         <ImageView
             android:id="@+id/iv_lrc"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/lrc" />
+            android:src="@mipmap/lrc"
+            android:visibility="gone" />
 
+        <!-- 接口返回下载链接有问题 -->
         <ImageView
             android:id="@+id/iv_upload"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="15dp"
-            android:src="@mipmap/upload" />
+            android:src="@mipmap/upload"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -119,6 +123,7 @@
                 android:layout_toRightOf="@id/rl_playandstop"
                 android:src="@mipmap/next" />
 
+            <!-- 感觉这个也没什么大用啊 -->
             <ImageView
                 android:id="@+id/iv_sound"
                 android:layout_width="20dp"
@@ -126,7 +131,39 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/iv_next"
-                android:src="@mipmap/sound" />
+                android:src="@mipmap/sound"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:id="@+id/rl_isCollection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@id/iv_frount"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_all"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/all" />
+
+                <ImageView
+                    android:id="@+id/iv_one"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/one"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/iv_random"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/random"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
