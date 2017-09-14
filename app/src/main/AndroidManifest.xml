@@ -15,7 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden">
+
+            <!-- 隐藏软键盘 -->
+
+        </activity>
         <!-- <activity android:name=".Activity.LaunchActivity"> -->
         <activity android:name=".Activity.HomeActivity">
             <intent-filter>
@@ -27,7 +34,8 @@
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.ShowActivity" />
         <!-- <activity android:name=".Activity.HomeActivity"/> -->
-        <activity android:name=".Activity.EveryNewsActivity"></activity>
+        <activity android:name=".Activity.EveryNewsActivity" />
+        <activity android:name=".Activity.MusicActivity"></activity>
     </application>
 
 </manifest>

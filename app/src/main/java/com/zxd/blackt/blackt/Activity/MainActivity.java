@@ -2,15 +2,13 @@ package com.zxd.blackt.blackt.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
@@ -44,6 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initView();
 
         home();
+
     }
 
     private void initView() {
@@ -68,9 +67,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void home() {
+
+        Intent intent = getIntent();
+        String setting = intent.getStringExtra("setting");
+        String news = intent.getStringExtra("news");
+        String note = intent.getStringExtra("note");
+        String music = intent.getStringExtra("music");
+        String info = intent.getStringExtra("info");
+
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-        ft.replace(R.id.rll, new NewsFragment(), "news");
+
+        if (setting != null) {
+
+        } else if (news != null) {
+            ft.replace(R.id.rll, new NewsFragment(), "news");
+        } else if (note != null) {
+            ft.replace(R.id.rll, new NoteFragment(), "note");
+        } else if (music != null) {
+            ft.replace(R.id.rll, new MusicFragment(), "music");
+        } else if (info != null) {
+
+        }
+
         ft.commit();
     }
 
@@ -127,9 +146,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("------------>>", "stop");
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.tra_in, R.anim.tra_out);
     }
 
 }

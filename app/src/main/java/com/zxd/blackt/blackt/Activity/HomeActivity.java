@@ -13,15 +13,9 @@ import android.widget.Toast;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionButton;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
-import com.zxd.blackt.blackt.Common.Constants;
-import com.zxd.blackt.blackt.Common.Events.ExitEvent;
 import com.zxd.blackt.blackt.Entity.Words;
 import com.zxd.blackt.blackt.Entrance.Entrances;
 import com.zxd.blackt.blackt.R;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,6 +37,7 @@ public class HomeActivity extends BaseActivity {
     private List<SubActionButton> subActionButtonList;
     private FloatingActionMenu actionMenu;
     private FloatingActionButton actionButton;
+    private boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,35 +173,48 @@ public class HomeActivity extends BaseActivity {
         subActionButtonList.get(i).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
 
                 switch (i) {
                     case 0:
-                        Toast.makeText(HomeActivity.this, "设置", Toast.LENGTH_SHORT).show();
-                        actionMenu.close(true);
+                        intent.putExtra("setting", "setting");
+                        startActivity(intent);
                         break;
                     case 1:
-                        Intent intent = new Intent(HomeActivity.this, EveryNewsActivity.class);
+                        intent.putExtra("news", "news");
                         startActivity(intent);
-                        overridePendingTransition(R.anim.tra_in, R.anim.tra_out);
-                        actionMenu.close(true);
                         break;
                     case 2:
-                        Toast.makeText(HomeActivity.this, "笔记", Toast.LENGTH_SHORT).show();
-                        actionMenu.close(true);
+                        intent.putExtra("note", "note");
+                        startActivity(intent);
                         break;
                     case 3:
-                        Toast.makeText(HomeActivity.this, "音乐", Toast.LENGTH_SHORT).show();
-                        actionMenu.close(true);
+                        intent.putExtra("music", "music");
+                        startActivity(intent);
                         break;
                     case 4:
-                        Toast.makeText(HomeActivity.this, "信息", Toast.LENGTH_SHORT).show();
-                        actionMenu.close(true);
+                        intent.putExtra("info", "info");
+                        startActivity(intent);
                         break;
                 }
+
+                overridePendingTransition(R.anim.tra_in, R.anim.tra_out);
+                actionMenu.close(true);
 
             }
         });
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (flag) {
+            Toast.makeText(this, "再次点击即可退出", Toast.LENGTH_SHORT).show();
+            flag = false;
+        } else {
+            super.onBackPressed();
+            System.exit(0);
+            flag = true;
+        }
+    }
 }

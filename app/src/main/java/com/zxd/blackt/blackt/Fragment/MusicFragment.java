@@ -1,22 +1,22 @@
 package com.zxd.blackt.blackt.Fragment;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.zxd.blackt.blackt.Adapter.MusicAdapter;
-import com.zxd.blackt.blackt.Application.App;
-import com.zxd.blackt.blackt.Entity.Music;
 import com.zxd.blackt.blackt.Entity.PlayMusic;
 import com.zxd.blackt.blackt.Entrance.Entrances;
 import com.zxd.blackt.blackt.R;
@@ -35,10 +35,27 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
     private ImageView iv_search_click;
     private MusicAdapter musicAdapter;
 
+    //    @SuppressLint("NewApi")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music, container, false);
+//        final ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+//        viewTreeObserver.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+//            @Override
+//            public void onWindowFocusChanged(final boolean hasFocus) {
+//                if (hasFocus && Build.VERSION.SDK_INT >= 19) {
+//                    View decorView = getActivity().getWindow().getDecorView();
+//                    decorView.setSystemUiVisibility(
+//                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+//                                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+//                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+//                }
+//            }
+//        });
         initView(view);
         return view;
     }
@@ -67,6 +84,7 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
 
 
         });
+
     }
 
     private void goneButton() {
@@ -129,4 +147,5 @@ public class MusicFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
 }

@@ -1,11 +1,14 @@
 package com.zxd.blackt.blackt.Activity;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.zxd.blackt.blackt.Utils.EventBusUtils.Event;
 import com.zxd.blackt.blackt.Utils.EventBusUtils.EventBusUtil;
@@ -58,6 +61,7 @@ public class BaseActivity extends AppCompatActivity {
 
     /**
      * 真正的沉浸式模式。
+     * Fragment状态栏和导航栏会显示出来
      *
      * @param hasFocus
      */

@@ -20,12 +20,9 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Adapter.TopAdapter;
 import com.zxd.blackt.blackt.Application.App;
 import com.zxd.blackt.blackt.Common.Constants;
-import com.zxd.blackt.blackt.Common.Events.ExitEvent;
 import com.zxd.blackt.blackt.Entity.Top;
 import com.zxd.blackt.blackt.Entrance.Entrances;
 import com.zxd.blackt.blackt.R;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
