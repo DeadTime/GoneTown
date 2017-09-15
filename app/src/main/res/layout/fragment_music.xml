@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     android:background="#667777">
-
-    <com.zxd.blackt.blackt.Customs.MyScrollview
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,8 +34,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@mipmap/search"
-                    android:visibility="gone" />
+                    android:src="@mipmap/search" />
 
             </RelativeLayout>
 
@@ -51,7 +49,5 @@
                 android:background="#667777" />
 
         </RelativeLayout>
-
-    </com.zxd.blackt.blackt.Customs.MyScrollview>
 
 </RelativeLayout>
