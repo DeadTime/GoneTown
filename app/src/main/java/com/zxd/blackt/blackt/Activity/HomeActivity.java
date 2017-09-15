@@ -197,9 +197,10 @@ public class HomeActivity extends BaseActivity {
                         startActivity(intent);
                         break;
                 }
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 overridePendingTransition(R.anim.tra_in, R.anim.tra_out);
                 actionMenu.close(true);
+                finish();
 
             }
         });

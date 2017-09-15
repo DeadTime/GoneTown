@@ -1,12 +1,14 @@
 package com.zxd.blackt.blackt.Activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -17,25 +19,38 @@ import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
 import com.zxd.blackt.blackt.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    @BindView(R.id.rll)
+    RelativeLayout rll;
+    @BindView(R.id.fabtn_info)
+    FloatingActionButton fabtnInfo;
+    @BindView(R.id.fabtn_pen)
+    FloatingActionButton fabtn_pen;
+    @BindView(R.id.fabtn_notes)
+    FloatingActionButton fabtn_notes;
+    @BindView(R.id.fabtn_music)
+    FloatingActionButton fabtn_music;
+    @BindView(R.id.fabtn_news)
+    FloatingActionButton fabtn_news;
+    @BindView(R.id.fabtn_setting)
+    FloatingActionButton fabtn_setting;
+    @BindView(R.id.menu)
+    FloatingActionMenu fam;
     private SharedPreferences sp;
     private boolean login_status;
-
+    private boolean flag = true;
     private FragmentManager fm;
     private FragmentTransaction ft;
-
-    private FloatingActionButton fabtn_setting;//设置
-    private FloatingActionButton fabtn_music;//音乐
-    private FloatingActionButton fabtn_news;//新闻
-    private FloatingActionButton fabtn_notes;//日记本
-    private FloatingActionButton fabtn_pen;//笔
-    private FloatingActionMenu fam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         getStatus();
 
@@ -57,12 +72,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fabtn_news.setOnClickListener(this);
         fabtn_notes.setOnClickListener(this);
         fabtn_pen.setOnClickListener(this);
-
-//        Glide.with(this)
-//                .load("")
-//                .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
-//                .placeholder(R.mipmap.ic_launcher)//需在load后调用
-//                .into(new ImageView(this));
 
     }
 
@@ -147,8 +156,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.tra_in, R.anim.tra_out);
+        if (flag) {
+            Toast.makeText(this, "再次点击即可退出", Toast.LENGTH_SHORT).show();
+            flag = false;
+        } else {
+            super.onBackPressed();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+            ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+            am.restartPackage(getPackageName());
+            finish();
+            flag = true;
+        }
     }
 
 }
