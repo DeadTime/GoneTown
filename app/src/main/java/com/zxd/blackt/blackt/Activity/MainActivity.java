@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
+import com.zxd.blackt.blackt.Fragment.HotMusicFragment;
 import com.zxd.blackt.blackt.Fragment.MusicFragment;
 import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
@@ -94,7 +95,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         } else if (note != null) {
             ft.replace(R.id.rll, new NoteFragment(), "note");
         } else if (music != null) {
-            ft.replace(R.id.rll, new MusicFragment(), "music");
+            //HotMusicFragment音乐首页/MusicFragment音乐搜查页
+//            ft.replace(R.id.rll, new MusicFragment(), "music");
+            ft.replace(R.id.rll, new HotMusicFragment(), "hotmusic");
         } else if (info != null) {
 
         }

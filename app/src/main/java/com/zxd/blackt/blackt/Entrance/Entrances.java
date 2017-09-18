@@ -1,9 +1,11 @@
 package com.zxd.blackt.blackt.Entrance;
 
+import com.zxd.blackt.blackt.Entity.LeaderBoards;
 import com.zxd.blackt.blackt.Entity.Lrc;
 import com.zxd.blackt.blackt.Entity.PlayMusic;
 import com.zxd.blackt.blackt.Entity.Top;
 import com.zxd.blackt.blackt.Entity.Words;
+import com.zxd.blackt.blackt.Entrance.NetService.LeaderboardService;
 import com.zxd.blackt.blackt.Entrance.NetService.LrcService;
 import com.zxd.blackt.blackt.Entrance.NetService.PlayMusicService;
 import com.zxd.blackt.blackt.Entrance.NetService.TopService;
@@ -37,8 +39,7 @@ public class Entrances {
     private String SHOWSIGN = "d123e9e506bd47a2b81279d0f75fef63";
     private static final int DEFAULT_TIMEOUT = 5;
     private final Retrofit retrofit;
-    private final Retrofit retrofit_play;
-    private final Retrofit retrofit_word;
+    private final Retrofit retrofit_showapi;
 
     public String getSHOWAPPID() {
         return SHOWAPPID;
@@ -61,14 +62,7 @@ public class Entrances {
                 .baseUrl(BASEURL)
                 .build();
 
-        retrofit_play = new Retrofit.Builder()
-                .client(okhttpClient.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(URL)
-                .build();
-
-        retrofit_word = new Retrofit.Builder()
+        retrofit_showapi = new Retrofit.Builder()
                 .client(okhttpClient.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -85,6 +79,7 @@ public class Entrances {
         return SingleEntrances.sEntrances;
     }
 
+    //新闻头条
     public void setTopData(Subscriber<Top> topSubscriber, String type, String key) {
         TopService topService = retrofit.create(TopService.class);
         topService.setTopData(type, key)
@@ -94,8 +89,9 @@ public class Entrances {
                 .subscribe(topSubscriber);
     }
 
+    //歌曲
     public void playMusic(Subscriber<PlayMusic> playMusicSubscriber, String showappid, String showsign, String keyword) {
-        PlayMusicService playMusicService = retrofit_play.create(PlayMusicService.class);
+        PlayMusicService playMusicService = retrofit_showapi.create(PlayMusicService.class);
         playMusicService.setPlayMusic(showappid, showsign, keyword)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -103,8 +99,9 @@ public class Entrances {
                 .subscribe(playMusicSubscriber);
     }
 
+    //歌词
     public void setLrcData(Subscriber<Lrc> lrcSubscriber, String showappid, String showsign, String musicid) {
-        LrcService lrcService = retrofit_play.create(LrcService.class);
+        LrcService lrcService = retrofit_showapi.create(LrcService.class);
         lrcService.setLrcData(showappid, showsign, musicid)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -112,13 +109,24 @@ public class Entrances {
                 .subscribe(lrcSubscriber);
     }
 
+    //每日一句
     public void showWords(Subscriber<Words> showWordsSubscriber, String showappid, String showsign, String count) {
-        WordService showWordsService = retrofit_word.create(WordService.class);
+        WordService showWordsService = retrofit_showapi.create(WordService.class);
         showWordsService.setWords(showappid, showsign, count)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(showWordsSubscriber);
+    }
+
+    //歌曲排行榜
+    public void getLeaderBoards(Subscriber<LeaderBoards> leaderboardSubscriber, String showappid, String showsign, String topid) {
+        LeaderboardService leaderboardService = retrofit_showapi.create(LeaderboardService.class);
+        leaderboardService.getLeaderBoards(showappid, showsign, topid)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(leaderboardSubscriber);
     }
 
 }
