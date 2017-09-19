@@ -41,8 +41,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     FloatingActionButton fabtn_setting;
     @BindView(R.id.menu)
     FloatingActionMenu fam;
-    private SharedPreferences sp;
-    private boolean login_status;
     private boolean flag = true;
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -52,8 +50,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        getStatus();
 
         initView();
 
@@ -103,16 +99,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
         ft.commit();
-    }
-
-    private void getStatus() {
-        sp = getSharedPreferences("SharedPreferences", 0);
-        login_status = sp.getBoolean("login_status", false);
-        if (!login_status) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
     @Override

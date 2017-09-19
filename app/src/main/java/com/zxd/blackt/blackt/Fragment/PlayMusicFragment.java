@@ -23,8 +23,8 @@ import com.zxd.blackt.blackt.Customs.LRCView;
 import com.zxd.blackt.blackt.Entity.Lrc;
 import com.zxd.blackt.blackt.Entrance.Entrances;
 import com.zxd.blackt.blackt.R;
-import com.zxd.blackt.blackt.Utils.FromHtmlUtils;
-import com.zxd.blackt.blackt.Utils.PreferenceUtil;
+import com.zxd.blackt.blackt.Util.FromHtmlUtils;
+import com.zxd.blackt.blackt.Util.PreferenceUtil;
 
 import java.io.BufferedWriter;
 import java.io.File;

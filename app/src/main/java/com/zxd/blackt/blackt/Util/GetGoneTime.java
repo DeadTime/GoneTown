@@ -1,11 +1,10 @@
-package com.zxd.blackt.blackt.Utils;
+package com.zxd.blackt.blackt.Util;
 
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by zhuangxd on 2017/5/3.

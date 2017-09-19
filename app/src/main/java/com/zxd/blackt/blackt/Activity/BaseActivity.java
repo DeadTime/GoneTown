@@ -8,8 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.zxd.blackt.blackt.Utils.EventBusUtils.Event;
-import com.zxd.blackt.blackt.Utils.EventBusUtils.EventBusUtil;
+import com.zxd.blackt.blackt.Util.EventBusUtils.Event;
+import com.zxd.blackt.blackt.Util.EventBusUtils.EventBusUtil;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

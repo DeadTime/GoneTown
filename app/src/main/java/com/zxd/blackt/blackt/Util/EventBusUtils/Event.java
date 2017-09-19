@@ -1,4 +1,4 @@
-package com.zxd.blackt.blackt.Utils.EventBusUtils;
+package com.zxd.blackt.blackt.Util.EventBusUtils;
 
 /**
  * 事件，EventBus订阅发布。

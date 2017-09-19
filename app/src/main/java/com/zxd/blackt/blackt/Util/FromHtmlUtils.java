@@ -1,4 +1,4 @@
-package com.zxd.blackt.blackt.Utils;
+package com.zxd.blackt.blackt.Util;
 
 import android.text.Html;
 import android.text.Spanned;

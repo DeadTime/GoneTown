@@ -1,4 +1,4 @@
-package com.zxd.blackt.blackt.Utils.EventBusUtils;
+package com.zxd.blackt.blackt.Util.EventBusUtils;
 
 import org.greenrobot.eventbus.EventBus;
 

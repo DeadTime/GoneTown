@@ -3,4 +3,5 @@
     <color name="colorPrimary">#1E1E1E</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="clickspan_color">#00ddb6</color>
 </resources>

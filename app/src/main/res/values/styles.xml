@@ -11,6 +11,8 @@
         <item name="colorControlNormal">#000000</item>
         <!-- AppCompatEditText选择的底线颜色 -->
         <item name="colorControlActivated">#FFFFE0</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="MenuLabelsStyle">

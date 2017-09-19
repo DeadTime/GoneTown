@@ -24,8 +24,7 @@
             <!-- 隐藏软键盘 -->
 
         </activity>
-        <!-- <activity android:name=".Activity.LaunchActivity"> -->
-        <activity android:name=".Activity.HomeActivity">
+        <activity android:name=".Activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +33,7 @@
         </activity>
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.ShowActivity" />
-        <!-- <activity android:name=".Activity.HomeActivity"/> -->
+        <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.EveryNewsActivity" />
         <activity android:name=".Activity.MusicActivity" />
         <activity android:name=".Activity.MusicListActivity"></activity>

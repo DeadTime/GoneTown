@@ -70,7 +70,7 @@ public class ShowRanksAdapter extends RecyclerView.Adapter<ShowRanksAdapter.View
 
     @Override
     public int getItemCount() {
-        return 20;
+        return slist.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
