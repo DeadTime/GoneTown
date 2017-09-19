@@ -23,4 +23,9 @@
         <item name="android:ellipsize">end</item>
     </style>
 
+    <!-- 欢迎页,有效去除白屏 -->
+    <style name="AppWelcome" parent="AppTheme">
+        <item name="android:windowBackground">@mipmap/lunch</item>
+    </style>
+
 </resources>

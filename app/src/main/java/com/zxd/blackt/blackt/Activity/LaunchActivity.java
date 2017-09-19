@@ -28,8 +28,8 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppWelcome);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch);
         handler.sendEmptyMessageDelayed(1, 3000);
     }
 
