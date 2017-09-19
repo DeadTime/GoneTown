@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 
 import com.zxd.blackt.blackt.Util.EventBusUtils.Event;
@@ -129,6 +130,16 @@ public class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         if (isRegisterEventBus()) {
             EventBusUtil.unregister(this);
+        }
+    }
+
+    public void setNight(boolean isNight) {
+        if (!isNight) {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            recreate();
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            recreate();
         }
     }
 

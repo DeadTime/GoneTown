@@ -15,6 +15,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
 import com.zxd.blackt.blackt.Fragment.HotMusicFragment;
+import com.zxd.blackt.blackt.Fragment.InfoFragment;
 import com.zxd.blackt.blackt.Fragment.MusicFragment;
 import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
@@ -95,7 +96,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //            ft.replace(R.id.rll, new MusicFragment(), "music");
             ft.replace(R.id.rll, new HotMusicFragment(), "hotmusic");
         } else if (info != null) {
-
+            ft.replace(R.id.rll, new InfoFragment(), "info");
         }
 
         ft.commit();
