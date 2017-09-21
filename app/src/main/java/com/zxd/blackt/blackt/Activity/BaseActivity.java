@@ -9,11 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 
-import com.zxd.blackt.blackt.Util.EventBusUtils.Event;
-import com.zxd.blackt.blackt.Util.EventBusUtils.EventBusUtil;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by zhuangxd on 2017/5/4.
@@ -24,9 +19,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        if (isRegisterEventBus()) {
-            EventBusUtil.register(this);
-        }
+
         /**
          * 没有状态栏的浸透式
          * 调用getWindow().getDecorView()方法获取到了当前界面的DecorView，
@@ -98,49 +91,6 @@ public class BaseActivity extends AppCompatActivity {
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
-    }
-
-    /**
-     * 是否注册事件分发
-     *
-     * @return true绑定EventBus事件分发，默认不绑定，子类需要绑定的话复写此方法返回true.
-     */
-    protected boolean isRegisterEventBus() {
-        return false;
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEventBusCome(Event event) {
-        if (event != null) {
-            receiveEvent(event);
-        }
-    }
-
-    /**
-     * 接收到分发到事件
-     *
-     * @param event 事件
-     */
-    protected void receiveEvent(Event event) {
-
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (isRegisterEventBus()) {
-            EventBusUtil.unregister(this);
-        }
-    }
-
-    public void setNight(boolean isNight) {
-        if (!isNight) {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            recreate();
-        } else {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            recreate();
-        }
     }
 
     /**

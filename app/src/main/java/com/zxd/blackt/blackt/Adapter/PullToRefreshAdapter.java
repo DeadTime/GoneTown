@@ -37,25 +37,25 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<SonglistBean, BaseVie
         helper.setText(R.id.tv_music_name, item.getSongname());
         helper.setText(R.id.tv_music_author, item.getSingername());
         Glide.with(mContext).load(item.getAlbumpic_big()).crossFade().into((ImageView) helper.getView(R.id.iv_music_image));
-        ((LinearLayout) helper.getView(R.id.ll_music)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final int songid = item.getSongid();
-                final String songurl = item.getUrl();
-                final String downurl = item.getDownUrl();
-                MusicListActivity musicListActivity = (MusicListActivity) mContext;
-                FragmentManager fragmentManager = musicListActivity.getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                PlayMusicFragment playMusicFragment = new PlayMusicFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("sid", songid);
-                bundle.putString("songurl", songurl);
-                bundle.putString("downurl", downurl);
-                playMusicFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.show_music_rll, playMusicFragment, "playmusicfragment");
-                fragmentTransaction.commit();
-            }
-        });
+//        ((LinearLayout) helper.getView(R.id.ll_music)).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final int songid = item.getSongid();
+//                final String songurl = item.getUrl();
+//                final String downurl = item.getDownUrl();
+//                MusicListActivity musicListActivity = (MusicListActivity) mContext;
+//                FragmentManager fragmentManager = musicListActivity.getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                PlayMusicFragment playMusicFragment = new PlayMusicFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("sid", songid);
+//                bundle.putString("songurl", songurl);
+//                bundle.putString("downurl", downurl);
+//                playMusicFragment.setArguments(bundle);
+//                fragmentTransaction.replace(R.id.show_music_rll, playMusicFragment, "playmusicfragment");
+//                fragmentTransaction.commit();
+//            }
+//        });
     }
 
 }

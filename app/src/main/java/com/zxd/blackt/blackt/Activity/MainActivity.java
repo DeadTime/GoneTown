@@ -7,12 +7,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.zxd.blackt.blackt.Application.App;
+import com.zxd.blackt.blackt.Event.DayEvent;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
 import com.zxd.blackt.blackt.Fragment.HotMusicFragment;
 import com.zxd.blackt.blackt.Fragment.InfoFragment;
@@ -20,6 +23,10 @@ import com.zxd.blackt.blackt.Fragment.MusicFragment;
 import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
 import com.zxd.blackt.blackt.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +57,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.bind(this);
 
         initView();
@@ -81,22 +89,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         String note = intent.getStringExtra("note");
         String music = intent.getStringExtra("music");
         String info = intent.getStringExtra("info");
+        String search = intent.getStringExtra("search");
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
 
         if (setting != null) {
-
+//            ft.replace(R.id.rll, new SettingFragment(), "setting");
         } else if (news != null) {
             ft.replace(R.id.rll, new NewsFragment(), "news");
         } else if (note != null) {
             ft.replace(R.id.rll, new NoteFragment(), "note");
         } else if (music != null) {
-            //HotMusicFragment音乐首页/MusicFragment音乐搜查页
-//            ft.replace(R.id.rll, new MusicFragment(), "music");
             ft.replace(R.id.rll, new HotMusicFragment(), "hotmusic");
         } else if (info != null) {
             ft.replace(R.id.rll, new InfoFragment(), "info");
+        } else if (search != null) {
+            ft.replace(R.id.rll, new MusicFragment(), "music");
         }
 
         ft.commit();
@@ -113,7 +122,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 fam.close(true);
                 Toast.makeText(this, "音乐", Toast.LENGTH_SHORT).show();
                 ft = fm.beginTransaction();
-                ft.replace(R.id.rll, new MusicFragment(), "music");
+                ft.replace(R.id.rll, new HotMusicFragment(), "hotmusic");
                 ft.commit();
                 break;
             case R.id.fabtn_news:

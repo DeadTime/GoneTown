@@ -30,7 +30,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="This is just a list of music"
-                android:textColor="#fff" />
+                android:textColor="@color/lable_text" />
 
             <LinearLayout
                 android:id="@+id/ll_please_click"
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="If you want to search for yourself"
-                    android:textColor="#fff" />
+                    android:textColor="@color/lable_text" />
 
             </LinearLayout>
 

@@ -1,14 +1,25 @@
 package com.zxd.blackt.blackt.Fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.zxd.blackt.blackt.Event.DayEvent;
 import com.zxd.blackt.blackt.R;
 
+import org.greenrobot.eventbus.EventBus;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -17,6 +28,23 @@ public class InfoFragment extends Fragment {
 
 
     Unbinder unbinder;
+    @BindView(R.id.setthemmm)
+    Button setNight;
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 1) {
+
+                int current = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                if (current == Configuration.UI_MODE_NIGHT_YES) {
+                    ((AppCompatActivity) getActivity()).getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    ((AppCompatActivity) getActivity()).getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -32,9 +60,9 @@ public class InfoFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    @OnClick(R.id.setNight)
+    @OnClick(R.id.setthemmm)
     void setNight() {
-//        getActivity().setNight();
+        handler.sendEmptyMessage(1);
     }
 
     @Override
@@ -42,4 +70,5 @@ public class InfoFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
 }

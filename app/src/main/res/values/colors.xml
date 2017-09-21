@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b1b1b1</color>
-    <color name="colorPrimaryDark">#e6e6e6</color>
-    <color name="colorAccent">#FF0231</color>
-    <color name="clickspan_color">#00c0cc</color>
+    <color name="colorPrimary">#C7EDCC</color>
+    <color name="colorPrimaryDark">#8FBC8F</color>
+    <color name="colorAccent">#CD0000</color>
+    <color name="clickspan_color">#97FFFF</color>
+    <color name="lable_text">#022022</color>
 </resources>

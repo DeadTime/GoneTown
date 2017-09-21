@@ -3,26 +3,36 @@ package com.zxd.blackt.blackt.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.zxd.blackt.blackt.Adapter.PullToRefreshAdapter;
 import com.zxd.blackt.blackt.Entity.LeaderBoards;
+import com.zxd.blackt.blackt.Entity.LeaderBoards.ShowapiResBodyBean.PagebeanBean.SonglistBean;
 import com.zxd.blackt.blackt.Entrance.Entrances;
+import com.zxd.blackt.blackt.Fragment.HotMusicFragment;
+import com.zxd.blackt.blackt.Fragment.InfoFragment;
+import com.zxd.blackt.blackt.Fragment.NewsFragment;
+import com.zxd.blackt.blackt.Fragment.NoteFragment;
+import com.zxd.blackt.blackt.Fragment.PlayMusicFragment;
 import com.zxd.blackt.blackt.R;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscriber;
-
-import com.zxd.blackt.blackt.Entity.LeaderBoards.ShowapiResBodyBean.PagebeanBean.SonglistBean;
 
 public class MusicListActivity extends BaseActivity implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -30,6 +40,22 @@ public class MusicListActivity extends BaseActivity implements BaseQuickAdapter.
     RecyclerView rlvRankMusics;
     @BindView(R.id.swiprefresh)
     SwipeRefreshLayout swiprefresh;
+    @BindView(R.id.fabtn_info)
+    FloatingActionButton fabtnInfo;
+    @BindView(R.id.fabtn_pen)
+    FloatingActionButton fabtnPen;
+    @BindView(R.id.fabtn_notes)
+    FloatingActionButton fabtnNotes;
+    @BindView(R.id.fabtn_music)
+    FloatingActionButton fabtnMusic;
+    @BindView(R.id.fabtn_news)
+    FloatingActionButton fabtnNews;
+    @BindView(R.id.fabtn_setting)
+    FloatingActionButton fabtnSetting;
+    @BindView(R.id.menu)
+    FloatingActionMenu menu;
+    @BindView(R.id.show_music_rll)
+    RelativeLayout showMusicRll;
     private String rankey;
 
     private static List<SonglistBean> slist;
@@ -41,6 +67,9 @@ public class MusicListActivity extends BaseActivity implements BaseQuickAdapter.
     private int delayMillis = 1000;
     private int mCurrentCounter = 0;
     private PullToRefreshAdapter pullToRefreshAdapter;
+
+    private FragmentManager fm;
+    private FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +83,36 @@ public class MusicListActivity extends BaseActivity implements BaseQuickAdapter.
         showRanks();
     }
 
-    private void initAdapter(List<SonglistBean> slist) {
+    @OnClick({R.id.fabtn_info, R.id.fabtn_pen, R.id.fabtn_notes, R.id.fabtn_music, R.id.fabtn_news, R.id.fabtn_setting, R.id.menu})
+    void musiclist(View view) {
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        switch (view.getId()) {
+            case R.id.fabtn_info:
+                menu.close(true);
+                ft.replace(R.id.show_music_rll, new InfoFragment(), "info");
+                break;
+            case R.id.fabtn_pen:
+                break;
+            case R.id.fabtn_notes:
+                break;
+            case R.id.fabtn_music:
+                menu.close(true);
+                ft.replace(R.id.show_music_rll, new HotMusicFragment(), "hotmusic");
+                break;
+            case R.id.fabtn_news:
+                menu.close(true);
+                ft.replace(R.id.show_music_rll, new NewsFragment(), "news");
+                break;
+            case R.id.fabtn_setting:
+                break;
+            case R.id.menu:
+                break;
+        }
+        ft.commit();
+    }
+
+    private void initAdapter(final List<SonglistBean> slist) {
         pullToRefreshAdapter = new PullToRefreshAdapter(slist);
         pullToRefreshAdapter.setOnLoadMoreListener(this, rlvRankMusics);
         pullToRefreshAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
@@ -64,7 +122,23 @@ public class MusicListActivity extends BaseActivity implements BaseQuickAdapter.
         rlvRankMusics.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void onSimpleItemClick(final BaseQuickAdapter adapter, final View view, final int position) {
-                Toast.makeText(MusicListActivity.this, Integer.toString(position), Toast.LENGTH_LONG).show();
+
+                showMusicRll.setVisibility(View.VISIBLE);
+                swiprefresh.setVisibility(View.GONE);
+                final int songid = slist.get(position).getSongid();
+                final String songurl = slist.get(position).getUrl();
+                final String downurl = slist.get(position).getDownUrl();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                PlayMusicFragment playMusicFragment = new PlayMusicFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("sid", songid);
+                bundle.putString("songurl", songurl);
+                bundle.putString("downurl", downurl);
+                playMusicFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.show_music_rll, playMusicFragment, "playmusicfragment");
+                fragmentTransaction.commit();
+
             }
         });
     }

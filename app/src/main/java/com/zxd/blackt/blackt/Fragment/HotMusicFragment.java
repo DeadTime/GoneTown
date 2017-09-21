@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.zxd.blackt.blackt.Activity.MainActivity;
 import com.zxd.blackt.blackt.Activity.MusicListActivity;
 import com.zxd.blackt.blackt.Adapter.RanksAdapter;
 import com.zxd.blackt.blackt.Customs.BTListView;
@@ -72,7 +73,11 @@ public class HotMusicFragment extends Fragment {
 
     @OnClick(R.id.ll_please_click)
     void pleaseClick() {
-        Toast.makeText(getActivity(), "跳跳跳", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.putExtra("search", "search");
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.tra_frount, R.anim.tra_back);
+        getActivity().finish();
     }
 
     @OnItemClick(R.id.btlv_hots)
@@ -98,6 +103,7 @@ public class HotMusicFragment extends Fragment {
         }
         Intent intent = new Intent(getActivity(), MusicListActivity.class);
         intent.putExtra("rankey", rankey);
+        getActivity().overridePendingTransition(R.anim.tra_frount, R.anim.tra_back);
         startActivity(intent);
     }
 
