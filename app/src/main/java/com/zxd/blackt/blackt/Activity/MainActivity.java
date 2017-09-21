@@ -78,6 +78,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fabtn_news.setOnClickListener(this);
         fabtn_notes.setOnClickListener(this);
         fabtn_pen.setOnClickListener(this);
+        fabtnInfo.setOnClickListener(this);
 
     }
 
