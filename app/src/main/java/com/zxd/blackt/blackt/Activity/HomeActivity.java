@@ -119,7 +119,8 @@ public class HomeActivity extends BaseActivity {
         ImageView icon = new ImageView(this);
         icon.setImageResource(R.drawable.fab_add);
         actionButton = new FloatingActionButton.Builder(this)
-                .setTheme(R.style.MenuLabelsStyle)
+//                .setTheme(R.style.MenuLabelsStyle)
+                .setBackgroundDrawable(R.drawable.fab_label_background)
                 .setContentView(icon)
                 .setPosition(FloatingActionButton.POSITION_BOTTOM_CENTER)
                 .build();
