@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden"
+            android:configChanges="orientation|keyboardHidden|uiMode"
             android:windowSoftInputMode="adjustUnspecified|stateHidden">
 
             <!-- 隐藏软键盘 -->
@@ -36,7 +36,8 @@
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.EveryNewsActivity" />
         <activity android:name=".Activity.MusicActivity" />
-        <activity android:name=".Activity.MusicListActivity"></activity>
+        <activity android:name=".Activity.MusicListActivity" />
+        <activity android:name=".Activity.DayAndNightActivity"></activity>
     </application>
 
 </manifest>

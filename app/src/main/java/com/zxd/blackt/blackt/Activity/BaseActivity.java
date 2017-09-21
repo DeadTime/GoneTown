@@ -1,6 +1,7 @@
 package com.zxd.blackt.blackt.Activity;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;

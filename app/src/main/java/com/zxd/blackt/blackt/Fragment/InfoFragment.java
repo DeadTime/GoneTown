@@ -1,23 +1,24 @@
 package com.zxd.blackt.blackt.Fragment;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.zxd.blackt.blackt.Event.DayEvent;
+import com.zxd.blackt.blackt.Activity.DayAndNightActivity;
 import com.zxd.blackt.blackt.R;
-
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,18 +34,31 @@ public class InfoFragment extends Fragment {
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+
             if (msg.what == 1) {
 
                 int current = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
                 if (current == Configuration.UI_MODE_NIGHT_YES) {
                     ((AppCompatActivity) getActivity()).getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    showDayorNight("day");
                 } else {
                     ((AppCompatActivity) getActivity()).getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    showDayorNight("night");
                 }
 
             }
         }
     };
+
+    private void showDayorNight(String isDay) {
+
+        Intent intent = new Intent(getActivity(), DayAndNightActivity.class);
+        intent.putExtra("isDay", isDay);
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        getActivity().finish();
+
+    }
 
     @Nullable
     @Override
