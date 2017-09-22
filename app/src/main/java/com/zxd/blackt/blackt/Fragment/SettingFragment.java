@@ -102,7 +102,6 @@ public class SettingFragment extends Fragment {
         cleanCatchDisk();
         clearCacheDiskSelf();
         textcache.setText(getCacheSize());
-        TastyToast.makeText(getActivity(), "Clear success !", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
     }
 
     public boolean cleanCatchDisk() {
@@ -121,8 +120,10 @@ public class SettingFragment extends Fragment {
             } else {
                 Glide.get(App.getInstances()).clearDiskCache();
             }
+            TastyToast.makeText(getActivity(), "Clear success !", TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
             return true;
         } catch (Exception e) {
+            TastyToast.makeText(getActivity(), "Clear error !", TastyToast.LENGTH_SHORT, TastyToast.ERROR);
             e.printStackTrace();
             return false;
         }
