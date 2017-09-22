@@ -7,15 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import com.zxd.blackt.blackt.Application.App;
-import com.zxd.blackt.blackt.Event.DayEvent;
 import com.zxd.blackt.blackt.Fragment.AllNoteFragment;
 import com.zxd.blackt.blackt.Fragment.HotMusicFragment;
 import com.zxd.blackt.blackt.Fragment.InfoFragment;
@@ -24,10 +21,6 @@ import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
 import com.zxd.blackt.blackt.Fragment.SettingFragment;
 import com.zxd.blackt.blackt.R;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,6 +85,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         String music = intent.getStringExtra("music");
         String info = intent.getStringExtra("info");
         String search = intent.getStringExtra("search");
+        String isnotme = intent.getStringExtra("isnotme");
+        if (isnotme != null) {
+            Intent intent2 = new Intent(this, ToMyOwnActivity.class);
+            startActivity(intent2);
+            finish();
+            overridePendingTransition(R.anim.tra_frount, R.anim.tra_back);
+        }
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();

@@ -37,7 +37,8 @@
         <activity android:name=".Activity.EveryNewsActivity" />
         <activity android:name=".Activity.MusicActivity" />
         <activity android:name=".Activity.MusicListActivity" />
-        <activity android:name=".Activity.DayAndNightActivity"></activity>
+        <activity android:name=".Activity.DayAndNightActivity" />
+        <activity android:name=".Activity.ToMyOwnActivity"></activity>
     </application>
 
 </manifest>

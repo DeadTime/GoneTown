@@ -160,6 +160,9 @@ public class HomeActivity extends BaseActivity {
         ImageView itemIcon5 = new ImageView(this);
         itemIcon5.setImageResource(R.mipmap.fab_info);
         SubActionButton button5 = itemBuilder.setContentView(itemIcon5).build();
+        ImageView itemIcon6 = new ImageView(this);
+        itemIcon6.setImageResource(R.mipmap.isnotme);
+        SubActionButton button6 = itemBuilder.setContentView(itemIcon6).build();
 
         //3.菜单
         actionMenu = new FloatingActionMenu.Builder(this)
@@ -168,6 +171,7 @@ public class HomeActivity extends BaseActivity {
                 .addSubActionView(button3)
                 .addSubActionView(button4)
                 .addSubActionView(button5)
+                .addSubActionView(button6)
                 .setStartAngle(0)
                 .setEndAngle(-180)
                 .attachTo(actionButton)
@@ -180,6 +184,7 @@ public class HomeActivity extends BaseActivity {
         subActionButtonList.add(button3);
         subActionButtonList.add(button4);
         subActionButtonList.add(button5);
+        subActionButtonList.add(button6);
 
         for (int i = 0; i < subActionButtonList.size(); i++) {
             onClicks(i);
@@ -213,6 +218,10 @@ public class HomeActivity extends BaseActivity {
                         break;
                     case 4:
                         intent.putExtra("info", "info");
+                        startActivity(intent);
+                        break;
+                    case 5:
+                        intent.putExtra("isnotme", "isme");
                         startActivity(intent);
                         break;
                 }
