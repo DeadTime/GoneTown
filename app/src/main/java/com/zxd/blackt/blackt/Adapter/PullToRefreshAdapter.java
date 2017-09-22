@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zxd.blackt.blackt.Activity.MusicListActivity;
@@ -16,6 +17,8 @@ import com.zxd.blackt.blackt.R;
 import com.zxd.blackt.blackt.Entity.LeaderBoards.ShowapiResBodyBean.PagebeanBean.SonglistBean;
 
 import java.util.List;
+
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
 /**
  * 文 件 名: PullToRefreshAdapter
@@ -36,7 +39,8 @@ public class PullToRefreshAdapter extends BaseQuickAdapter<SonglistBean, BaseVie
 
         helper.setText(R.id.tv_music_name, item.getSongname());
         helper.setText(R.id.tv_music_author, item.getSingername());
-        Glide.with(mContext).load(item.getAlbumpic_big()).crossFade().into((ImageView) helper.getView(R.id.iv_music_image));
+        Glide.with(mContext).load(item.getAlbumpic_big()).apply(centerCropTransform()
+                .placeholder(R.mipmap.ic_launcher)).transition(new DrawableTransitionOptions().crossFade(500)).into((ImageView) helper.getView(R.id.iv_music_image));
 //        ((LinearLayout) helper.getView(R.id.ll_music)).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

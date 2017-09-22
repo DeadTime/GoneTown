@@ -22,6 +22,7 @@ import com.zxd.blackt.blackt.Fragment.InfoFragment;
 import com.zxd.blackt.blackt.Fragment.MusicFragment;
 import com.zxd.blackt.blackt.Fragment.NewsFragment;
 import com.zxd.blackt.blackt.Fragment.NoteFragment;
+import com.zxd.blackt.blackt.Fragment.SettingFragment;
 import com.zxd.blackt.blackt.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -96,7 +97,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ft = fm.beginTransaction();
 
         if (setting != null) {
-//            ft.replace(R.id.rll, new SettingFragment(), "setting");
+            ft.replace(R.id.rll, new SettingFragment(), "setting");
         } else if (news != null) {
             ft.replace(R.id.rll, new NewsFragment(), "news");
         } else if (note != null) {
@@ -117,7 +118,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.fabtn_setting:
                 fam.close(true);
-                Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
+                ft = fm.beginTransaction();
+                ft.replace(R.id.rll, new SettingFragment(), "setting");
+                ft.commit();
                 break;
             case R.id.fabtn_music:
                 fam.close(true);

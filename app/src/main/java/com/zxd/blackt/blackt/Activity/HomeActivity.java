@@ -1,7 +1,12 @@
 package com.zxd.blackt.blackt.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -44,8 +49,21 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        isDay();
         setFloat();
         setText();
+    }
+
+    private void isDay() {
+
+        SharedPreferences preferences = getSharedPreferences("isDay", Context.MODE_PRIVATE);
+        String isDay = preferences.getString("isDay", "day");
+        if (isDay.equals("day")) {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
     }
 
     private void setText() {

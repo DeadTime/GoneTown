@@ -18,7 +18,7 @@ public class DayAndNightActivity extends BaseActivity {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
                 Intent intent = new Intent(DayAndNightActivity.this, MainActivity.class);
-                intent.putExtra("info", "info");
+                intent.putExtra("setting", "setting");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_tra, R.anim.fade_trb);
             }

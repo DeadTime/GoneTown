@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.zxd.blackt.blackt.Activity.MainActivity;
 import com.zxd.blackt.blackt.Activity.MusicListActivity;
 import com.zxd.blackt.blackt.Adapter.RanksAdapter;
@@ -68,7 +69,7 @@ public class HotMusicFragment extends Fragment {
     }
 
     private void setGifIcon() {
-        Glide.with(getActivity()).load(R.mipmap.pleaseclick).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(ivPleaseClick);
+        Glide.with(getActivity()).asGif().load(R.mipmap.pleaseclick).into(ivPleaseClick);
     }
 
     @OnClick(R.id.ll_please_click)

@@ -2,6 +2,7 @@ package com.zxd.blackt.blackt.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.DrawableUtils;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.zxd.blackt.blackt.Entity.Top;
 import com.zxd.blackt.blackt.R;
 
 import java.util.List;
+
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
 
 /**
  * Created by zhuangxd on 2017/5/10.
@@ -40,7 +43,8 @@ public class TopAdapter extends RecyclerView.Adapter<TopAdapter.ViewHolder> {
         holder.tv_top_title.setText(topDataList.get(position).getTitle());
         holder.tv_top_date.setText(topDataList.get(position).getDate());
         holder.tv_top_detail.setText(topDataList.get(position).getAuthor_name());
-        Glide.with(context).load(topDataList.get(position).getThumbnail_pic_s()).into(holder.iv_top_image);
+        Glide.with(context).load(topDataList.get(position).getThumbnail_pic_s()).apply(centerCropTransform()
+                .placeholder(R.mipmap.ic_launcher)).into(holder.iv_top_image);
         holder.iv_top_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

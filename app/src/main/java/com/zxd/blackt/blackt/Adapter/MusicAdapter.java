@@ -24,6 +24,8 @@ import com.zxd.blackt.blackt.R;
 
 import java.util.List;
 
+import static com.bumptech.glide.request.RequestOptions.centerCropTransform;
+
 /**
  * Created by zhuangxd on 2017/6/21.
  */
@@ -48,7 +50,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     public void onBindViewHolder(MusicAdapter.ViewHolder holder, int position) {
         holder.tv_author.setText(slist.get(position).getSingername());
         holder.tv_name.setText(slist.get(position).getSongname());
-        Glide.with(context).load(slist.get(position).getAlbumpic_big()).into(holder.image);
+        Glide.with(context).load(slist.get(position).getAlbumpic_big()).apply(centerCropTransform()
+                .placeholder(R.mipmap.ic_launcher)).into(holder.image);
         final int songid = slist.get(position).getSongid();
         final String songurl = slist.get(position).getM4a();
         final String downurl = slist.get(position).getDownUrl();
